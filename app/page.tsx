@@ -43,7 +43,7 @@ const Home = () => {
             ${showText ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}
           `}
         >
-          قريبا...6-2025
+          قريباً...4-2026
         </p>
       </div>
     </main>
