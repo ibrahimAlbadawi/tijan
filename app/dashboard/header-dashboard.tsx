@@ -17,12 +17,28 @@ type NavLink = {
     href: string;
 };
 
+interface MedicalCenter {
+    id: number;
+    name: string;
+}
+
 export default function HeaderDashboard() {
     const [role, setRole] = useState<string | null>(null);
+    const [medicalCenter, setMedicalCenter] = useState<string | null>(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const r = localStorage.getItem("role");
+        const medicalCenterData = localStorage.getItem("medicalCenter");
+
         setRole(r);
+        if (medicalCenterData) {
+            const medicalCenterObj = JSON.parse(medicalCenterData);
+            setMedicalCenter(medicalCenterObj.name); // This sets just the string name
+        } else {
+            setMedicalCenter(null);
+        }
+        setLoading(false);
     }, []);
 
     const receptionistLinks: NavLink[] = [
@@ -49,19 +65,18 @@ export default function HeaderDashboard() {
                     className="transition-transform duration-300 group-hover:scale-110"
                 />
 
-                {/* Clinic Name reveal */}
-                <span className="text-lg font-semibold opacity-0 translate-x-[-6px] group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-                    Clinic Name
+                <span className="text-2xl font-semibold opacity-0 translate-x-[-6px] group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                    {loading ? "Loading..." : medicalCenter || "Medical Center"}
                 </span>
             </div>
 
             {/* MIDDLE LINKS */}
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-6 mr-30">
                 {links.map((link) => (
                     <Link
                         key={link.href}
                         href={link.href}
-                        className="text-xl font-medium hover:text-[var(--primary-color)] hover:scale-120 transition-all duration-300"
+                        className="text-2xl font-medium hover:text-[var(--primary-color)] hover:scale-120 transition-all duration-300"
                     >
                         {link.name}
                     </Link>

@@ -10,7 +10,8 @@ export async function POST(req: Request) {
         return NextResponse.json({
             token,
             role: user.role,
-            name: user.name,
+            name: `${user.firstName} ${user.lastName}`, // or just user.firstName if you prefer
+            medicalCenter: user.medicalCenter // Add this line
         });
     } catch (err) {
         return NextResponse.json(

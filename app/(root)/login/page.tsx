@@ -33,8 +33,13 @@ export default function Login() {
         // store token and role in localStorage
         localStorage.setItem("token", data.token);
         localStorage.setItem("role", data.role);
+        localStorage.setItem(
+            "medicalCenter",
+            JSON.stringify(data.medicalCenter)
+        );
 
-        if (role === "receptionist") window.location.href = "/dashboard/receptionist/patients";
+        if (role === "receptionist")
+            window.location.href = "/dashboard/receptionist/patients";
         if (role === "doctor") window.location.href = "/dashboard/doctor";
         if (role === "admin") window.location.href = "/dashboard/admin";
         if (role === "supplier") window.location.href = "/dashboard/supplier";
@@ -44,7 +49,7 @@ export default function Login() {
         <div className="min-h-screen flex items-center justify-center p-6">
             {loading && <LoadingOverlay />}
             <div className="w-full max-w-sm bg-white p-6 rounded-xl shadow flex flex-col gap-5">
-                <h1 className="text-2xl font-semibold text-center">Sign In</h1>
+                <h1 className="text-2xl font-semibold text-center">Log In</h1>
 
                 {error && <p className="text-red-500 text-sm">{error}</p>}
 

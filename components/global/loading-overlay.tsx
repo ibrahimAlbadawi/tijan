@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { images } from "@/constants/images";
 
 export default function LoadingOverlay() {
   return (
@@ -8,10 +9,10 @@ export default function LoadingOverlay() {
       <div className="flex flex-col items-center gap-3">
 
         <Image
-          src="/assets/TijanIconColored.png"
+          src={images.icon_white}
           alt="Tijan Logo"
-          width={200}
-          height={200}
+          width={150}
+          height={150}
           className="breathe"
         />
 
