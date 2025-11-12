@@ -31,7 +31,7 @@ import { CalendarPlus, CalendarIcon, Pencil } from "lucide-react";
 import { format } from "date-fns";
 
 interface Patient {
-    id?: string;
+    id?: number;
     firstName: string;
     lastName: string;
     email?: string;
@@ -157,9 +157,6 @@ export function PatientFormDrawer({
                 throw new Error(errorMessage);
             }
 
-            // Only try to parse JSON if response is OK
-            const _result = await response.json();
-
             // Success - reload or update state
             window.location.reload();
         } catch (error) {
@@ -169,16 +166,20 @@ export function PatientFormDrawer({
             );
 
             // Show error to user (you might want to use a toast or alert)
-            alert(
-                error.message ||
-                    `Failed to ${isEditMode ? "update" : "create"} patient`
-            );
+            let errorMessage = `Failed to ${
+                isEditMode ? "update" : "create"
+            } patient`;
+
+            if (error instanceof Error) {
+                errorMessage = error.message;
+            }
+
+            alert(errorMessage);
         } finally {
             setLoading(false);
             setOpen(false);
         }
     }
-
     const handleInputChange = (field: string, value: string) => {
         setFormData((prev) => ({
             ...prev,
