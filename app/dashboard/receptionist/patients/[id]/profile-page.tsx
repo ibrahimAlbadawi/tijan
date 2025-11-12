@@ -174,7 +174,7 @@ export function ClientPatientProfilePage({
                             Financial Status
                         </CardTitle>
                         <CardDescription>
-                            Overview of {patient.firstName} {patient.lastName}'s
+                            Overview of {patient.firstName} {patient.lastName}&apos;s
                             financial information and billing
                         </CardDescription>
                     </CardHeader>
