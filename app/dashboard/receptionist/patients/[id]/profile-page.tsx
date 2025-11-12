@@ -22,9 +22,9 @@ interface ClientPatientProfilePageProps {
         firstName: string;
         lastName: string;
         gender: string;
-        dateOfBirth: Date;
+        dateOfBirth: Date | string;
         phoneNumber: string | null;
-        email: string | null;
+        email: string;
         address: string | null;
         appointments: Array<{
             id: number;
