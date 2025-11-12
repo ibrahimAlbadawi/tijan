@@ -59,8 +59,9 @@ export async function PUT(
   } catch (error) {
     console.error("Error updating patient:", error);
     
-    // Handle specific Prisma errors
-    if (error.code === 'P2025') {
+    // Handle specific Prisma errors with type assertion
+    const prismaError = error as { code?: string };
+    if (prismaError.code === 'P2025') {
       return NextResponse.json(
         { error: "Patient not found" },
         { status: 404 }
@@ -136,6 +137,16 @@ export async function DELETE(
     return NextResponse.json({ message: "Patient deleted successfully" });
   } catch (error) {
     console.error("Error deleting patient:", error);
+    
+    // Handle specific Prisma errors with type assertion
+    const prismaError = error as { code?: string };
+    if (prismaError.code === 'P2025') {
+      return NextResponse.json(
+        { error: "Patient not found" },
+        { status: 404 }
+      );
+    }
+
     return NextResponse.json(
       { error: "Failed to delete patient" },
       { status: 500 }
