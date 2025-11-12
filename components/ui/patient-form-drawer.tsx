@@ -149,7 +149,7 @@ export function PatientFormDrawer({
                 try {
                     const errorData = await response.json();
                     errorMessage = errorData.error || errorMessage;
-                } catch (parseError) {
+                } catch {
                     // If we can't parse JSON, use status text
                     errorMessage = response.statusText || errorMessage;
                 }
@@ -158,7 +158,7 @@ export function PatientFormDrawer({
             }
 
             // Only try to parse JSON if response is OK
-            const result = await response.json();
+            const _result = await response.json();
 
             // Success - reload or update state
             window.location.reload();

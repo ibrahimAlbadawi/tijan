@@ -1,11 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 
 const Home = () => {
   const [showLogo, setShowLogo] = useState(false);
-  const [showText, setShowText] = useState(false);
 
   useEffect(() => {
     const id = requestAnimationFrame(() => setShowLogo(true));

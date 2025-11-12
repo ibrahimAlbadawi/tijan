@@ -17,10 +17,10 @@ type NavLink = {
     href: string;
 };
 
-interface MedicalCenter {
-    id: number;
-    name: string;
-}
+// interface MedicalCenter {
+//     id: number;
+//     name: string;
+// }
 
 export default function HeaderDashboard() {
     const [role, setRole] = useState<string | null>(null);
